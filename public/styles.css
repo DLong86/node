@@ -54,6 +54,16 @@ h3 {
 .content {
     margin-left: 20px;
 }
+.blogs a {
+    display: block;
+    margin: 40px 0;
+    padding-left: 30px;
+    border-left: 6px solid #9d8854;
+}
+.blogs a:hover h3 {
+    color: #9d8854;
+    transition: 0.3s      ;
+}
 .create-blog form {
     max-width: 400px;
     margin: 0 auto;

@@ -52,6 +52,15 @@ app.post("/blogs", (req, res) => {
 		.catch((err) => console.error(err));
 });
 
+app.get("/blogs/:id", (req, res) => {
+	const id = req.params.id;
+	Blog.findById(id)
+		.then((result) => {
+			res.render("details", { blog: result, title: "Blog Details" });
+		})
+		.catch((err) => console.error(err));
+});
+
 app.get("/about", (req, res) => {
 	res.render("about", { title: "About" });
 });
