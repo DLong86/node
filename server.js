@@ -52,6 +52,14 @@ app.post("/blogs", (req, res) => {
 		.catch((err) => console.error(err));
 });
 
+app.get("/about", (req, res) => {
+	res.render("about", { title: "About" });
+});
+
+app.get("/blogs/create", (req, res) => {
+	res.render("create", { title: "Create a New Blog" });
+});
+
 app.get("/blogs/:id", (req, res) => {
 	const id = req.params.id;
 	Blog.findById(id)
@@ -61,12 +69,14 @@ app.get("/blogs/:id", (req, res) => {
 		.catch((err) => console.error(err));
 });
 
-app.get("/about", (req, res) => {
-	res.render("about", { title: "About" });
-});
+app.delete("/blogs/:id", (req, res) => {
+	const id = req.params.id;
 
-app.get("/blogs/create", (req, res) => {
-	res.render("create", { title: "Create a New Blog" });
+	Blog.findByIdAndDelete(id)
+		.then((result) => {
+			res.json({ redirect: "/blogs" });
+		})
+		.catch((err) => console.error(err));
 });
 
 // 404 page
